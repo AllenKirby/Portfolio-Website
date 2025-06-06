@@ -1,0 +1,6 @@
+export {default as Sample1} from './sample1.png'
+export {default as Sample2} from './sample2.png'
+export {default as Sample3} from './sample3.png'
+export {default as Success} from './success.png'
+export {default as Error} from './error.png'
+export {default as Me} from './me.png'

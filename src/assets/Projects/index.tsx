@@ -1,0 +1,6 @@
+export { default as FIS } from './FIS.png'
+export { default as FIS1 } from './FIS1.png'
+export { default as FIS2 } from './FIS2.png'
+export { default as LMS } from './LMS.png'
+export { default as LMS1 } from './LMS1.png'
+export { default as LMS2 } from './LMS2.png'

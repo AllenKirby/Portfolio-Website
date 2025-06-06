@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Acme&display=swap');
+@import "tailwindcss";
+
+@theme {
+    --font-sans: 'Manrope', sans-serif;
+    --font-acme: 'Acme', 'sans-serif';
+    --color-primary: #0a0a0a;
+    --color-secondary: #1F7600;
+}
+
+html {
+    scroll-behavior: smooth;
+}

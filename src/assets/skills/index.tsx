@@ -1,0 +1,14 @@
+export { default as HTML } from './html.png';
+export { default as CSS } from './css.png';
+export { default as JavaScript } from './js.png';
+export { default as ReactJS } from './react.png';
+export { default as TypeScript } from './typescript.png';
+export { default as TailwindCSS } from './tailwind.png';
+export { default as NodeJS } from './nodejs.png';
+export { default as ExpressJS } from './express.png';
+export { default as GIT } from './git.png';
+export { default as Github } from './github.png';
+export { default as Firebase } from './firebase.png';
+export { default as MongoDB } from './mongodb.png';
+export { default as CSharp } from './c-sharp.png';
+export { default as Python } from './python.png';
