@@ -3,7 +3,8 @@ import { Email } from '../api/api'
 
 export const useSendEmail = (
     onSuccessCallback: () => void,
-    onErrorCallback: (error: unknown) => void
+    onErrorCallback: (error: unknown) => void,
+    isRequestSuccess: () => void,
 ) => {
   const queryClient = useQueryClient();
     
@@ -12,6 +13,7 @@ export const useSendEmail = (
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ['sendEmail'] });
             onSuccessCallback();
+            isRequestSuccess()
         },
         onError: (error) => {
             onErrorCallback(error);

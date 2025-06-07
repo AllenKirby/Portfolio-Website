@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import { IoIosSend } from "react-icons/io";
-import { FaFacebook, FaLinkedin, FaWhatsappSquare } from "react-icons/fa";
+import { FaFacebook, FaLinkedin, FaWhatsappSquare, FaRegClock } from "react-icons/fa";
 
 import { useSendEmail } from "../hook/hook";
 import type { EmailType } from '../type/type'
@@ -14,6 +14,9 @@ interface MessageDialogState {
     message: string;
 }
 
+const COOLDOWN_DURATION = 180;
+const COOLDOWN_KEY = 'emailCooldownEndTime';
+
 const Contact = () => {
     const [data, setData] = useState<EmailType>({
         name: '',
@@ -24,6 +27,39 @@ const Contact = () => {
     const [errorFlag, setErrorFlag] = useState<boolean>(false);
     const [isMessageDialogOpen, setIsMessageDialogOpen] = useState<boolean>(false)
     const [messageData, setMessageData] = useState<MessageDialogState>({title: '', status: '', message: '',})
+    const [isCooldown, setIsCooldown] = useState<boolean>(false);
+    const [cooldownTime, setCooldownTime] = useState<number>(0);
+
+    useEffect(() => {
+        const savedEndTime = localStorage.getItem(COOLDOWN_KEY);
+        if (savedEndTime) {
+        const remaining = Math.floor((+savedEndTime - Date.now()) / 1000);
+        if (remaining > 0) {
+            setIsCooldown(true);
+            setCooldownTime(remaining);
+        } else {
+            localStorage.removeItem(COOLDOWN_KEY);
+        }
+        }
+    }, []);
+
+    useEffect(() => {
+        let timer: number;
+        if (isCooldown && cooldownTime > 0) {
+        timer = setInterval(() => {
+            setCooldownTime((prev) => {
+            if (prev <= 1) {
+                clearInterval(timer);
+                setIsCooldown(false);
+                localStorage.removeItem(COOLDOWN_KEY);
+                return 0;
+            }
+            return prev - 1;
+            });
+        }, 1000);
+        }
+        return () => clearInterval(timer);
+    }, [isCooldown, cooldownTime]);
 
     const onSuccess = () => {
         setMessageData({
@@ -45,7 +81,21 @@ const Contact = () => {
         setTimeout(() => setIsMessageDialogOpen(false), 3000);
     };
 
-    const { mutate: sendEmail, status } = useSendEmail(onSuccess, onError);
+    const isRequestSuccess = () => {
+        setData({
+            name: '',
+            email: '',
+            subject: '',
+            message: ''
+        })
+        const endTime = Date.now() + COOLDOWN_DURATION * 1000;
+        localStorage.setItem(COOLDOWN_KEY, endTime.toString());
+
+        setIsCooldown(true);
+        setCooldownTime(COOLDOWN_DURATION);
+    }
+
+    const { mutate: sendEmail, status } = useSendEmail(onSuccess, onError, isRequestSuccess);
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
@@ -137,10 +187,22 @@ const Contact = () => {
                 </div>
                 <div className="w-full">
                     <button 
-                        disabled={status === 'pending'}
+                        disabled={status === 'pending' || isCooldown}
                         type="submit" 
-                        className={`${status !== 'pending' ? 'bg-secondary hover:bg-white text-white hover:text-secondary' : 'bg-gray-400 text-gray-600'} px-5 py-3 text-sm rounded-md flex items-center justify-center gap-2 transition duration-300 cursor-pointer`}>
-                        <IoIosSend size={20}/> Send Message
+                        className={`${status === 'pending' || isCooldown 
+                            ? 'bg-gray-400 text-gray-600 cursor-not-allowed' 
+                            : 'bg-secondary hover:bg-white text-white hover:text-secondary'} 
+                            px-5 py-3 text-sm rounded-md flex items-center justify-center gap-2 transition duration-300`}>
+                        {isCooldown ? 
+                            <>
+                            <FaRegClock size={20}/> 
+                            Wait {cooldownTime}s 
+                            </> : 
+                            <>
+                            <IoIosSend size={20}/> 
+                            Send Message
+                            </>
+                        }
                     </button>
                 </div>
             </form>
