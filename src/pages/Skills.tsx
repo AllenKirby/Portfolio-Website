@@ -1,4 +1,4 @@
-import { HTML, CSS, JavaScript, TailwindCSS, ReactJS, TypeScript, NodeJS, ExpressJS, MongoDB, Firebase, GIT, Github
+import { HTML, CSS, JavaScript, TailwindCSS, ReactJS, TypeScript, NodeJS, ExpressJS, MongoDB, Firebase, GIT, Github, CSharp, Java, SQL
  } from '../assets/skills/'
 import { SkillCard } from '../components/'
 import { useDelayedValue, useInView } from '../hook';
@@ -10,6 +10,30 @@ import { motion } from 'framer-motion'
 
 const mySkills = [
     {
+        name: "JavaScript",
+        percentage: 80,
+        icon: JavaScript,
+        type: "frontend"
+    },
+    {
+        name: "Java",
+        percentage: 40,
+        icon: Java,
+        type: "programming languages"
+    },
+    {
+        name: "C#",
+        percentage: 30,
+        icon: CSharp,
+        type: "programming languages"
+    },
+    {
+        name: "SQL",
+        percentage: 55,
+        icon: SQL,
+        type: "backend"
+    },
+    {
         name: "HTML",
         percentage: 87,
         icon: HTML,
@@ -19,12 +43,6 @@ const mySkills = [
         name: "CSS",
         percentage: 85,
         icon: CSS,
-        type: "frontend"
-    },
-    {
-        name: "JavaScript",
-        percentage: 80,
-        icon: JavaScript,
         type: "frontend"
     },
     {

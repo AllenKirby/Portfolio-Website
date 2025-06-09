@@ -12,3 +12,5 @@ export { default as Firebase } from './firebase.png';
 export { default as MongoDB } from './mongodb.png';
 export { default as CSharp } from './c-sharp.png';
 export { default as Python } from './python.png';
+export { default as Java } from './java.png';
+export { default as SQL } from './sql.png';
