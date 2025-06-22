@@ -1,4 +1,4 @@
-import { HTML, CSS, JavaScript, TailwindCSS, ReactJS, TypeScript, NodeJS, ExpressJS, MongoDB, Firebase, GIT, Github, CSharp, Java, SQL
+import { HTML, CSS, JavaScript, TailwindCSS, ReactJS, TypeScript, NodeJS, ExpressJS, MongoDB, Firebase, GIT, Github, SQL
  } from '../assets/skills/'
 import { SkillCard } from '../components/'
 import { useDelayedValue, useInView } from '../hook';
@@ -31,6 +31,12 @@ const mySkills = [
         name: "CSS",
         percentage: 85,
         icon: CSS,
+        type: "frontend"
+    },
+    {
+        name: "JavaScript",
+        percentage: 80,
+        icon: JavaScript,
         type: "frontend"
     },
     {
