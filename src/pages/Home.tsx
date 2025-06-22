@@ -125,7 +125,7 @@ const Home = () => {
                     initial={{ opacity: 0, scale: 0.75 }}
                     animate={downloadInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.75 }}
                     transition={{ duration: 0.5, ease: 'easeInOut' }}
-                    href="/CV.pdf" target="_blank" rel="noopener noreferrer"
+                    href="/Resume_Santileces.pdf" target="_blank" rel="noopener noreferrer"
                     >
                         <button className="text-xs md:text-sm px-5 py-2 my-2 rounded-md text-white border-2 border-white bg-transparent hover:bg-white hover:text-primary transtion-all duration-150 font-semibold cursor-pointer">Download CV</button>
                 </motion.a>

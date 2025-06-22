@@ -16,18 +16,6 @@ const mySkills = [
         type: "frontend"
     },
     {
-        name: "Java",
-        percentage: 40,
-        icon: Java,
-        type: "programming languages"
-    },
-    {
-        name: "C#",
-        percentage: 30,
-        icon: CSharp,
-        type: "programming languages"
-    },
-    {
         name: "SQL",
         percentage: 55,
         icon: SQL,
